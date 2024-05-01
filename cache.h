@@ -9,10 +9,27 @@ class Cache {
 private:
   // TODO: private inner struct/class 선언 가능
   // TODO: private 멤버 변수와 함수 추가 가능
+  struct node{
+    std::string keyValue;
+    void* val;
+    struct node* next;
+  };
+  node first;
+  int cashsize=0;
+  
+  struct HashNode{
+    std::string* key;
+    void* value;
+    HashNode*next;
+
+    HashNode(std::string *key, void* value) : key(key), value(value), next(nullptr){}
+  };
+  HashNode* Table ;
 
 public:
   Cache();
   ~Cache();
+  int hashFunction(std::string key);
   // int를 cache에 추가한다
   void add(std::string key, int value);
   // double을 cache에 추가한다
